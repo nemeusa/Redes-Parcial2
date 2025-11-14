@@ -2,6 +2,7 @@ using Fusion;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class EnemyLife : NetworkBehaviour
@@ -50,14 +51,18 @@ public class EnemyLife : NetworkBehaviour
 
         _currentSpawns--;
 
+        ColorManager.Instance.AddBlock(this);
+
         if (_currentSpawns == 0)
         {
+            GameManager.Instance.RPC_GameOver();
             DisconnectObject();
             return;
         }
 
         _respawnTimer = TickTimer.CreateFromSeconds(Runner, _respawnTime);
 
+        Debug.Log("muerto xd");
         IsDead = true;
     }
 
@@ -65,9 +70,11 @@ public class EnemyLife : NetworkBehaviour
     {
         if (_respawnTimer.Expired(Runner))
         {
+            Debug.Log("procesando");
             _respawnTimer = TickTimer.None;
             CurrentLife = _maxLife;
             IsDead = false;
+            Debug.Log("se reseteo");
         }
     }
 

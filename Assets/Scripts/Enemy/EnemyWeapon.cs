@@ -10,6 +10,8 @@ public class EnemyWeapon : NetworkBehaviour
 
     public event Action OnShot;
 
+    [SerializeField] private Color _myColor;
+
     public void BulletShot()
     {
         if (!HasStateAuthority) return;
@@ -38,4 +40,11 @@ public class EnemyWeapon : NetworkBehaviour
             }
         }
     }
+
+
+    public void SetColor(Color playerColor)
+    {
+        _myColor = playerColor;
+    }
+
 }

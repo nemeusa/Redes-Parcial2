@@ -8,6 +8,9 @@ public class EnemyController : NetworkBehaviour
     EnemyMovement _movement;
     EnemyWeapon _weapon;
 
+    private Material _material;
+
+
     private void Awake()
     {
         _movement = GetComponent<EnemyMovement>();
@@ -49,5 +52,12 @@ public class EnemyController : NetworkBehaviour
             _weapon.BulletShot();
             //_weapon.RaycastShot();
         }
+    }
+
+    [Rpc]
+    public void RPC_SetTeam(Color color)
+    {
+        _material.color = color;
+        _weapon.SetColor(color);
     }
 }

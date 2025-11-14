@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 2895933646520745116}
   - component: {fileID: 165258663719690888}
   - component: {fileID: 4644656878454764646}
+  - component: {fileID: -9195176860140516332}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -287,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 2665147864938607003, guid: 9deaeed3cbcaee945865e313a18bc878, type: 3}
   _spawnPoint: {fileID: 3266374251733681552}
+  _myColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2895933646520745116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +333,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d5a7c359af9314894e2190658b3f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-9195176860140516332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170291053250089556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351e40a55d4c6ee46924681382feeb76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mesh: {fileID: 4454437456357012863}
 --- !u!1 &8578318385732245579
 GameObject:
   m_ObjectHideFlags: 0
