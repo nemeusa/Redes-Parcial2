@@ -42,6 +42,12 @@ public class GameManager : NetworkBehaviour
         OnStartGame += DisableGameOver;
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
+
     public void AddPlayer(EnemyController player)
     {
         var newPlayer = player.Object.InputAuthority;

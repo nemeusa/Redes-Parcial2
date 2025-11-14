@@ -8,7 +8,7 @@ public class EnemyController : NetworkBehaviour
     EnemyMovement _movement;
     EnemyWeapon _weapon;
 
-    private Material _material;
+    [SerializeField] Material _material;
 
 
     private void Awake()
@@ -32,10 +32,12 @@ public class EnemyController : NetworkBehaviour
                     _movement.Teleport(transform.position + Vector3.up * 3);
                 }
             };
+            GameManager.Instance.AddPlayer(this);
+
         }
+
     }
 
-    //Se actualiza para los clientes con State e Input Authority
     public override void FixedUpdateNetwork()
     {
         if (!GetInput(out NetworkInputData inputData)) return;
