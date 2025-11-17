@@ -9,6 +9,9 @@ public class ColorManager : NetworkBehaviour
 
     [SerializeField] private TextMeshProUGUI _teamOneText;
     [SerializeField] private TextMeshProUGUI _teamTwoText;
+    //[Networked, OnChangedRender(nameof(UpdateText))] TextMeshProUGUI _teamOneText { get; set; }
+    //[Networked, OnChangedRender(nameof(UpdateText))] TextMeshProUGUI _teamTwoText { get; set; }
+
 
     public int TeamOneFalls { get; private set; }
     public int TeamTwoFalls { get; private set; }
@@ -23,8 +26,10 @@ public class ColorManager : NetworkBehaviour
 
     private void Start()
     {
-        UpdateText(_teamOneText, TeamOneFalls);
-        UpdateText(_teamTwoText, TeamTwoFalls);
+        //UpdateText(_teamOneText, TeamOneFalls);
+        //UpdateText(_teamTwoText, TeamTwoFalls);
+
+        UpdateText();
 
         _teamOneColor = GameManager.Instance.TeamOneColor;
         _teamTwoColor = GameManager.Instance.TeamTwoColor;
@@ -43,13 +48,15 @@ public class ColorManager : NetworkBehaviour
             TeamTwoFalls++;
         }
 
-        UpdateText(_teamOneText, TeamOneFalls);
-        UpdateText(_teamTwoText, TeamTwoFalls);
+        //UpdateText(_teamOneText, TeamOneFalls);
+        //UpdateText(_teamTwoText, TeamTwoFalls);
+        UpdateText();
     }
 
-    private void UpdateText(TextMeshProUGUI t, int num)
+    public void UpdateText()
     {
-        t.text = $"{num}";
+        _teamOneText.text = $"{TeamOneFalls}";
+        _teamTwoText.text = $"{TeamTwoFalls}";
     }
 
     public Color GetWinner()
@@ -62,7 +69,8 @@ public class ColorManager : NetworkBehaviour
         TeamOneFalls = 0;
         TeamTwoFalls = 0;
 
-        UpdateText(_teamOneText, TeamOneFalls);
-        UpdateText(_teamTwoText, TeamTwoFalls);
+        UpdateText();
+        //UpdateText(_teamOneText, TeamOneFalls);
+        //UpdateText(_teamTwoText, TeamTwoFalls);
     }
 }

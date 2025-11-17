@@ -39,7 +39,7 @@ public class LocalInputs : NetworkBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
             _jumpButton = true;
         }

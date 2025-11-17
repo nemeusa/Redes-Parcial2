@@ -73,6 +73,7 @@ public class EnemyLife : NetworkBehaviour
             _respawnTimer = TickTimer.None;
             CurrentLife = _maxLife;
             IsDead = false;
+            OnDeadStateUpdate?.Invoke(IsDead);
             Debug.Log("se reseteo");
         }
     }

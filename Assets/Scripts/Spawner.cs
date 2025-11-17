@@ -29,6 +29,7 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason)
     {
+        GameManager.Instance._loseImage.SetActive(true);
         runner.Shutdown();
     }
 

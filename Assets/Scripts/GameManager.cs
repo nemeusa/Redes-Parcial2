@@ -18,7 +18,7 @@ public class GameManager : NetworkBehaviour
     private Dictionary<EnemyController, Color> _teamDictionary;
 
     [SerializeField] private GameObject _winImage;
-    [SerializeField] private GameObject _loseImage;
+    public GameObject _loseImage;
     //[SerializeField] private TimeManager _timeManager;
 
     bool _hasInitialized;
