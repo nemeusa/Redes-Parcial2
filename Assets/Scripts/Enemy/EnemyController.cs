@@ -13,16 +13,18 @@ public class EnemyController : NetworkBehaviour
 
     Vector3 initialPost;
 
+    private bool _doublejumped;
+
 
     private void Awake()
     {
         _movement = GetComponent<EnemyMovement>();
         _weapon = GetComponentInChildren<WeaponArm>();
-        initialPost = transform.position;
     }
 
     public override void Spawned()
     {
+        initialPost = transform.position;
 
         if (HasStateAuthority)
         {
@@ -52,7 +54,17 @@ public class EnemyController : NetworkBehaviour
 
         if (inputData.buttons.IsSet(PlayerButtons.Jump))
         {
-            _movement.Jump();
+            if (_movement.Grounded == true)
+            {
+                _movement.Jump(false, 15);
+            }
+            else if (_doublejumped == false)
+            {
+                //EnemyMovement.moveVelocity.y = 0f;
+                _movement.Jump(true, 15);
+                _doublejumped = true;
+            }
+            
         }
 
         //if (inputData.buttons.IsSet(PlayerButtons.Shot))
@@ -63,6 +75,11 @@ public class EnemyController : NetworkBehaviour
         }
 
         _weapon.RPC_Rotate(inputData.direction);
+
+        if (_movement.Grounded == true)
+        {
+            _doublejumped = false;
+        }
     }
 
     [Rpc]
