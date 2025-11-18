@@ -13,8 +13,8 @@ public class ColorManager : NetworkBehaviour
     //[Networked, OnChangedRender(nameof(UpdateText))] TextMeshProUGUI _teamTwoText { get; set; }
 
 
-    public int TeamOneFalls { get; private set; }
-    public int TeamTwoFalls { get; private set; }
+    [Networked, OnChangedRender(nameof(UpdateText))] int TeamOneFalls { get; set; }
+    [Networked, OnChangedRender(nameof(UpdateText))] int TeamTwoFalls { get; set; }
 
     private Color _teamOneColor;
     private Color _teamTwoColor;
@@ -29,12 +29,16 @@ public class ColorManager : NetworkBehaviour
         //UpdateText(_teamOneText, TeamOneFalls);
         //UpdateText(_teamTwoText, TeamTwoFalls);
 
-        UpdateText();
 
         _teamOneColor = GameManager.Instance.TeamOneColor;
         _teamTwoColor = GameManager.Instance.TeamTwoColor;
 
         GameManager.Instance.OnStartGame += Restart;
+    }
+
+    public override void Spawned()
+    {
+        UpdateText();
     }
 
     public void AddBlock(EnemyLife player)
@@ -57,6 +61,7 @@ public class ColorManager : NetworkBehaviour
     {
         _teamOneText.text = $"{TeamOneFalls}";
         _teamTwoText.text = $"{TeamTwoFalls}";
+        Debug.Log("actualiza contador");
     }
 
     public Color GetWinner()

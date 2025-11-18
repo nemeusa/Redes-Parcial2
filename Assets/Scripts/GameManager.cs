@@ -13,7 +13,7 @@ public class GameManager : NetworkBehaviour
 
 
     private Dictionary<PlayerRef, EnemyController> _clients;
-    private List<EnemyController> _myPlayers;
+    public List<EnemyController> myPlayers;
 
     private Dictionary<EnemyController, Color> _teamDictionary;
 
@@ -30,7 +30,7 @@ public class GameManager : NetworkBehaviour
     {
         Instance = this;
         _clients = new Dictionary<PlayerRef, EnemyController>();
-        _myPlayers = new List<EnemyController>();
+        myPlayers = new List<EnemyController>();
         _teamDictionary = new Dictionary<EnemyController, Color>();
     }
 
@@ -49,7 +49,7 @@ public class GameManager : NetworkBehaviour
         if (_clients.ContainsKey(newPlayer)) return;
 
         _clients.Add(newPlayer, player);
-        _myPlayers.Add(player);
+        myPlayers.Add(player);
 
         if (!_hasInitialized) return;
 
@@ -65,7 +65,7 @@ public class GameManager : NetworkBehaviour
 
     private void SetUpPlayers()
     {
-        foreach (var player in _myPlayers)
+        foreach (var player in myPlayers)
         {
             SetPlayerTeam(player);
         }

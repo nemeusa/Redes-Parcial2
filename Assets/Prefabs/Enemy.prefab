@@ -383,8 +383,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -20
-  jumpImpulse: 8
+  gravity: -30
+  jumpImpulse: 4
   acceleration: 10
   braking: 10
   maxSpeed: 2

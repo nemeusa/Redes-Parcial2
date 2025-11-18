@@ -12,6 +12,8 @@ public class Spawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
+        if (GameManager.Instance.myPlayers.Count > 2) return;
+
         if (runner.IsServer)
         {
             var spawnPoint = _spawnPoints[runner.SessionInfo.PlayerCount - 1];

@@ -67,14 +67,17 @@ public class EnemyController : NetworkBehaviour
             
         }
 
+        _weapon.RPC_Rotate(inputData.direction);
+
         //if (inputData.buttons.IsSet(PlayerButtons.Shot))
+        if (GameManager.Instance.myPlayers.Count < 2) return;
+
         if (inputData.isFirePressed)
         {
             _weapon.Shoot();
             //_weapon.RaycastShot();
         }
 
-        _weapon.RPC_Rotate(inputData.direction);
 
         if (_movement.Grounded == true)
         {
